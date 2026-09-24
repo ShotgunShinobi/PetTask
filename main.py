@@ -64,10 +64,16 @@ def main():
     if not active_pet_dir.exists():
         active_pet_dir = PETS_DIR / "default_cat"
 
-    # Make sure default cat is generated if not exists
-    if not (active_pet_dir / "spritesheet.png").exists():
+    # Ensure default pets exist
+    default_cat_dir = PETS_DIR / "default_cat"
+    if not (default_cat_dir / "spritesheet.png").exists():
         from assets.generate_cat import generate_cat_pack
-        generate_cat_pack(active_pet_dir)
+        generate_cat_pack(default_cat_dir)
+
+    default_panda_dir = PETS_DIR / "default_panda"
+    if not (default_panda_dir / "spritesheet.png").exists():
+        from assets.generate_panda import generate_panda_pack
+        generate_panda_pack(default_panda_dir)
 
     window = PetWindow(
         pets_dir=PETS_DIR,

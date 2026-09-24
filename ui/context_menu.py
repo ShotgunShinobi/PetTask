@@ -1,9 +1,6 @@
-"""Context Menu for Desktop Pet.
-Provides quick actions, scale/speed toggles, behavior forcing,
-and entry to the Pet Manager.
-"""
-
-from typing import Callable
+import json
+from pathlib import Path
+from typing import Callable, Optional
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QAction, QActionGroup, QFont, QIcon
 from PyQt6.QtWidgets import QMenu, QWidget
@@ -26,7 +23,10 @@ class PetContextMenu(QMenu):
         on_toggle_always_on_top: Callable[[bool], None],
         on_toggle_click_through: Callable[[bool], None],
         on_open_manager: Callable[[], None],
-        on_quit: Callable[[], None]
+        on_quit: Callable[[], None],
+        pets_dir: Optional[Path] = None,
+        active_pet_dir: Optional[Path] = None,
+        on_switch_pet: Optional[Callable[[Path], None]] = None
     ):
         super().__init__(parent)
         self.setStyleSheet("""
@@ -61,6 +61,28 @@ class PetContextMenu(QMenu):
         title_action.setFont(title_font)
         title_action.setEnabled(False)
 
+        # Switch Pet Submenu
+        if pets_dir and pets_dir.exists() and on_switch_pet:
+            switch_menu = self.addMenu("🔄 Switch Pet")
+            switch_menu.setStyleSheet(self.styleSheet())
+            pet_group = QActionGroup(self)
+            pet_group.setExclusive(True)
+
+            for p in sorted(pets_dir.iterdir()):
+                if p.is_dir() and (p / "pet.json").exists():
+                    try:
+                        with open(p / "pet.json", "r", encoding="utf-8") as f:
+                            p_meta = json.load(f)
+                        p_name = p_meta.get("name", p.name)
+                        p_action = switch_menu.addAction(f"🐾 {p_name}")
+                        p_action.setCheckable(True)
+                        if active_pet_dir and p.resolve() == active_pet_dir.resolve():
+                            p_action.setChecked(True)
+                        p_action.triggered.connect(lambda checked, path=p: on_switch_pet(path))
+                        pet_group.addAction(p_action)
+                    except Exception:
+                        pass
+
         self.addSeparator()
 
         # Actions Submenu
@@ -79,7 +101,7 @@ class PetContextMenu(QMenu):
         act_sleep = actions_menu.addAction("💤 Sleep (Zzz)")
         act_sleep.triggered.connect(lambda: on_action("sleep"))
 
-        act_groom = actions_menu.addAction("🐱 Lick Paw / Groom")
+        act_groom = actions_menu.addAction("🐾 Groom / Snack")
         act_groom.triggered.connect(lambda: on_action("groom"))
 
         act_idle = actions_menu.addAction("🧘 Sit Calmly")

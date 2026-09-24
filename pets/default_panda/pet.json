@@ -1,0 +1,68 @@
+{
+  "name": "Bao the Panda",
+  "description": "A delightful chubby giant panda who loves bamboo shoots, cozy naps, and waddling along your taskbar.",
+  "author": "Antigravity",
+  "version": "1.0",
+  "frame_width": 32,
+  "frame_height": 32,
+  "spritesheet": "spritesheet.png",
+  "default_scale": 2,
+  "states": {
+    "idle": {
+      "row": 0,
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "speed": 0.0
+    },
+    "walk": {
+      "row": 1,
+      "frames": 4,
+      "fps": 6,
+      "loop": true,
+      "speed": 1.0
+    },
+    "run": {
+      "row": 2,
+      "frames": 4,
+      "fps": 10,
+      "loop": true,
+      "speed": 2.6
+    },
+    "jump": {
+      "row": 3,
+      "frames": 3,
+      "fps": 5,
+      "loop": false,
+      "speed": 1.2
+    },
+    "sleep": {
+      "row": 4,
+      "frames": 4,
+      "fps": 2,
+      "loop": true,
+      "speed": 0.0
+    },
+    "groom": {
+      "row": 5,
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "speed": 0.0
+    },
+    "drag": {
+      "row": 6,
+      "frames": 2,
+      "fps": 3,
+      "loop": true,
+      "speed": 0.0
+    },
+    "fall": {
+      "row": 7,
+      "frames": 2,
+      "fps": 6,
+      "loop": true,
+      "speed": 0.0
+    }
+  }
+}

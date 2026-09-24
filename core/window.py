@@ -170,7 +170,10 @@ class PetWindow(QWidget):
             on_toggle_always_on_top=self.set_always_on_top,
             on_toggle_click_through=self.set_click_through,
             on_open_manager=self.open_pet_manager,
-            on_quit=self.quit_application
+            on_quit=self.quit_application,
+            pets_dir=self.pets_dir,
+            active_pet_dir=self.active_pet_dir,
+            on_switch_pet=self.switch_pet
         )
         menu.exec(global_pos)
 

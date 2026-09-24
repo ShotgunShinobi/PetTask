@@ -1,7 +1,7 @@
 {
-  "active_pet": "default_cat",
-  "scale": 2,
-  "speed": 1.0,
+  "active_pet": "default_panda",
+  "scale": 4,
+  "speed": 1.8,
   "always_on_top": true,
   "click_through": false
 }
