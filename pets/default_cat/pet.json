@@ -1,0 +1,68 @@
+{
+  "name": "Neko the Cat",
+  "description": "An adorable ginger tabby cat companion that loves running along your taskbar.",
+  "author": "Antigravity",
+  "version": "1.0",
+  "frame_width": 32,
+  "frame_height": 32,
+  "spritesheet": "spritesheet.png",
+  "default_scale": 2,
+  "states": {
+    "idle": {
+      "row": 0,
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "speed": 0.0
+    },
+    "walk": {
+      "row": 1,
+      "frames": 4,
+      "fps": 7,
+      "loop": true,
+      "speed": 1.2
+    },
+    "run": {
+      "row": 2,
+      "frames": 4,
+      "fps": 12,
+      "loop": true,
+      "speed": 3.0
+    },
+    "jump": {
+      "row": 3,
+      "frames": 3,
+      "fps": 6,
+      "loop": false,
+      "speed": 1.5
+    },
+    "sleep": {
+      "row": 4,
+      "frames": 4,
+      "fps": 2,
+      "loop": true,
+      "speed": 0.0
+    },
+    "groom": {
+      "row": 5,
+      "frames": 4,
+      "fps": 4,
+      "loop": true,
+      "speed": 0.0
+    },
+    "drag": {
+      "row": 6,
+      "frames": 2,
+      "fps": 3,
+      "loop": true,
+      "speed": 0.0
+    },
+    "fall": {
+      "row": 7,
+      "frames": 2,
+      "fps": 6,
+      "loop": true,
+      "speed": 0.0
+    }
+  }
+}
